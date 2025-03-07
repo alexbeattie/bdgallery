@@ -5,12 +5,7 @@
         Share Your Memories
       </h1>
 
-      <button
-        @click="handleLogout"
-        class="mb-6 px-4 py-2 bg-gray-200 rounded-md"
-      >
-        Logout
-      </button>
+  
 
       <div v-if="loading" class="text-lg">Loading...</div>
 
@@ -27,9 +22,10 @@
               type="text"
               id="name"
               v-model="name"
-              placeholder="Enter your name"
-              class="w-full p-3 border border-gray-300 rounded-md text-base"
+              class="w-full p-3 border border-gray-300 rounded-md text-base bg-gray-50"
+              readonly
             />
+            <p class="text-sm text-gray-500 mt-1">This name will appear with your uploaded photos</p>
           </div>
 
           <div class="mb-6">
@@ -83,6 +79,13 @@
           >
             {{ uploading ? "Uploading..." : "Submit" }}
           </button>
+
+              <button
+        @click="handleLogout"
+        class="mb-6 px-4 py-2 bg-gray-200 rounded-md"
+      >
+        Logout
+      </button>
         </form>
       </div>
 
@@ -108,7 +111,7 @@ import { ref, onMounted, onUnmounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { ref as storageRef, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { collection, addDoc, serverTimestamp, doc, getDoc } from 'firebase/firestore';
 import { auth, storage, db } from '../firebase/config';
 
 export default {
@@ -128,10 +131,26 @@ export default {
     let unsubscribe = null;
 
     onMounted(() => {
-      unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
         if (currentUser) {
           console.log("User authenticated:", currentUser.email);
           user.value = currentUser;
+          
+          // Auto-fill the name from Firestore
+          try {
+            const userDoc = await getDoc(doc(db, 'users', currentUser.uid));
+            if (userDoc.exists() && userDoc.data().name) {
+              name.value = userDoc.data().name;
+            } else if (currentUser.displayName) {
+              name.value = currentUser.displayName;
+            } else {
+              name.value = currentUser.email.split('@')[0];
+            }
+          } catch (err) {
+            console.error("Error fetching user profile:", err);
+            // Fallback if Firestore lookup fails
+            name.value = currentUser.email.split('@')[0];
+          }
         } else {
           console.error("User NOT authenticated");
           user.value = null;
@@ -153,26 +172,7 @@ export default {
         console.error("Logout error:", error);
       }
     };
-    const uploadImage = async (file) => {
-  try {
-    const timestamp = Date.now()
-    const fileName = `${timestamp}-${file.name}`
-    const storageReference = storageRef(storage, `birthday-images/${fileName}`)
     
-    // Upload the file
-    const snapshot = await uploadBytes(storageReference, file)
-    
-    // Get download URL
-    const downloadURL = await getDownloadURL(snapshot.ref)
-    console.log('Upload successful:', downloadURL)
-    return downloadURL
-    
-  } catch (error) {
-    console.error('Upload error:', error)
-    throw error
-  }
-}
-
     const handleFileChange = (e) => {
       const selectedFiles = Array.from(e.target.files);
       images.value = selectedFiles;
@@ -219,7 +219,7 @@ export default {
           try {
             const docRef = await addDoc(collection(db, "birthdayImages"), {
               url: downloadURL,
-              sender: name.value || "Anonymous",
+              sender: name.value,
               message: message.value || "",
               fileName: fileName,
               userId: user.value.uid,
@@ -266,6 +266,7 @@ export default {
   }
 };
 </script>
+
 
 <style scoped>
 /* Tailwind-like styling */

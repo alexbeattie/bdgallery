@@ -6,9 +6,10 @@
 
       <input
         type="text"
-        placeholder="Your Name (optional)"
+        placeholder="Your Name"
         class="w-full p-2 border rounded mb-4"
         v-model="name"
+        required
       />
 
       <input
@@ -34,66 +35,81 @@
         v-model="confirmPassword"
         required
       />
+      <LoadingSpinner v-if="loading" />
 
-      <button type="submit" class="w-full bg-blue-500 text-white p-2 rounded">
-        Sign Up
+      <button
+        type="submit"
+        :disabled="loading"
+        class="w-full mcm-button mcm-button-teal text-white p-2 rounded"
+      >
+        {{ loading ? "Creating account..." : "Sign Up" }}
       </button>
 
       <p class="mt-4 text-center">
-        Already have an account? <router-link to="/login" class="text-blue-500">Log in</router-link>
+        Already have an account?
+        <router-link to="/login" class="mcm-button mcm-button-orange">Log in</router-link>
       </p>
     </form>
   </div>
 </template>
 
 <script>
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { doc, setDoc, serverTimestamp } from 'firebase/firestore';
-import { auth, db } from '../firebase/config';
+import { ref } from "vue";
+import { useRouter } from "vue-router";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { doc, setDoc, serverTimestamp } from "firebase/firestore";
+import { auth, db } from "../firebase/config";
+import LoadingSpinner from "../components/LoadingSpinner.vue";
 
 export default {
-  name: 'SignupView',
+  name: "SignupView",
+  components: {
+    LoadingSpinner,
+  },
   setup() {
     const router = useRouter();
-    const name = ref('');
-    const email = ref('');
-    const password = ref('');
-    const confirmPassword = ref('');
-    const error = ref('');
+    const name = ref("");
+    const email = ref("");
+    const password = ref("");
+    const confirmPassword = ref("");
+    const error = ref("");
+    const loading = ref(false);
 
     const handleSignup = async () => {
-      error.value = '';
+      error.value = "";
 
       if (password.value !== confirmPassword.value) {
-        error.value = 'Passwords do not match';
+        error.value = "Passwords do not match";
         return;
       }
+      loading.value = true;
 
       try {
-        console.log('Creating authentication record...');
-        const userCredential = await createUserWithEmailAndPassword(auth, email.value, password.value);
+        console.log("Creating authentication record...");
+        const userCredential = await createUserWithEmailAndPassword(
+          auth,
+          email.value,
+          password.value
+        );
         const user = userCredential.user;
-        console.log('Authentication successful, user created:', user.uid);
 
         try {
-          console.log('Storing user data in Firestore...');
-          await setDoc(doc(db, 'users', user.uid), {
-            name: name.value || 'Anonymous',
+          console.log("Storing user data in Firestore...");
+          await setDoc(doc(db, "users", user.uid), {
+            name: name.value,
             email: email.value,
-            createdAt: serverTimestamp()
+            createdAt: serverTimestamp(),
           });
-          console.log('User document created in Firestore');
         } catch (firestoreError) {
-          console.error('Error creating Firestore document:', firestoreError);
-          // Continue with redirect even if Firestore fails
+          console.error("Error creating Firestore document:", firestoreError);
         }
 
-        router.push('/upload');
+        router.push("/upload");
       } catch (err) {
-        console.error('Signup error:', err);
+        console.error("Signup error:", err);
         error.value = err.message;
+      } finally {
+        loading.value = false;
       }
     };
 
@@ -103,14 +119,15 @@ export default {
       password,
       confirmPassword,
       error,
-      handleSignup
+      loading,
+      handleSignup,
     };
-  }
+  },
 };
 </script>
 
 <style scoped>
-/* Tailwind-like classes - same as LoginView */
+/* Tailwind-like classes */
 .min-h-screen {
   min-height: 100vh;
 }

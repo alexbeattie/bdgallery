@@ -42,8 +42,6 @@ html, body {
   overflow-x: hidden;
 }
 .background-pattern {
-  
-  background-image: url('/Users/alexbeattie/Developer/vue-shafali/vue-project/public/images/pattern.png');
   background-repeat: repeat;
   width: 100%;
   height: 100vh;

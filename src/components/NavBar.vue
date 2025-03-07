@@ -18,7 +18,7 @@
         <!-- Desktop menu -->
         <div class="hidden md:block">
           <div class="ml-10 flex items-center space-x-4">
-            <router-link 
+            <router-link
               to="/party-invitation" 
               class="px-5 py-2 font-medium tracking-wide uppercase transform -rotate-1 hover:rotate-0 transition-transform duration-300"
               :class="[

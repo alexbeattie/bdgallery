@@ -52,14 +52,13 @@ import NavBar from './components/NavBar.vue';
 </script>
 
 <style>
-/* Import Tailwind directives */
+/* Import Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap');
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities; 
-
-/* Import Google Fonts */
+/* Tailwind directives */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
 /* Global styles */
 html {

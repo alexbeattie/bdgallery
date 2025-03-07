@@ -19,9 +19,10 @@
         v-model="password"
         required
       />
+      <LoadingSpinner v-if="loading" />
 
-      <button type="submit" class="w-full mcm-button mcm-button-teal text-white p-2 rounded">
-        Log In
+      <button type="submit" :disabled="loading" class="w-full mcm-button mcm-button-teal text-white p-2 rounded">
+        {{ loading ? "Logging in..." : "Log In" }}
       </button>
 
       <p class="mt-4 text-center">
@@ -36,14 +37,20 @@ import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase/config';
+import LoadingSpinner from '../components/LoadingSpinner.vue';
 
 export default {
   name: 'LoginView',
+  components: {
+    LoadingSpinner
+  },
   setup() {
     const router = useRouter();
     const email = ref('');
     const password = ref('');
     const error = ref('');
+    const loading = ref(false);
+
 
     const handleLogin = async () => {
       error.value = '';
@@ -53,6 +60,8 @@ export default {
       } catch (err) {
         console.error('Login error:', err);
         error.value = err.message;
+      } finally {
+        loading.value = false;
       }
     };
 
@@ -60,6 +69,7 @@ export default {
       email,
       password,
       error,
+      loading,
       handleLogin
     };
   }
