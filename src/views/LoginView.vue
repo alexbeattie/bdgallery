@@ -20,12 +20,12 @@
         required
       />
 
-      <button type="submit" class="w-full bg-blue-500 text-white p-2 rounded">
+      <button type="submit" class="w-full mcm-button mcm-button-teal text-white p-2 rounded">
         Log In
       </button>
 
       <p class="mt-4 text-center">
-        Don't have an account? <router-link to="/signup" class="text-blue-500">Sign up</router-link>
+        Don't have an account? <router-link to="/signup" class="mcm-button mcm-button-orange">Sign up</router-link>
       </p>
     </form>
   </div>

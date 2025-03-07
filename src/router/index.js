@@ -6,6 +6,7 @@ import SignupView from '../views/SignupView.vue';
 import UploadView from '../views/UploadView.vue';
 import GalleryView from '../views/GalleryView.vue';
 import PartyInvitation from '../views/PartyInvitation.vue' // Import your party invitation component
+import McmButtonDemo from '../components/McmButtonDemo.vue';
 
 const routes = [
   {
@@ -38,6 +39,11 @@ const routes = [
     path: '/party-invitation',
     name: 'PartyInvitation',
     component: PartyInvitation
+  },
+  {
+    path: '/buttons',
+    name: 'buttons',
+    component: McmButtonDemo
   }
 ];
 
