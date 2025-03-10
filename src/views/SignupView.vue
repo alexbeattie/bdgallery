@@ -1,4 +1,5 @@
 <template>
+
   <div class="min-h-screen flex flex-col justify-center items-center">
     <form @submit.prevent="handleSignup" class="p-8 bg-white shadow-md rounded-lg">
       <h2 class="text-2xl font-bold mb-4">Create an Account</h2>
@@ -60,11 +61,13 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc, serverTimestamp } from "firebase/firestore";
 import { auth, db } from "../firebase/config";
 import LoadingSpinner from "../components/LoadingSpinner.vue";
+import UnifiedNavBar from "@/components/UnifiedNavBar.vue";
 
 export default {
   name: "SignupView",
   components: {
     LoadingSpinner,
+    UnifiedNavBar,
   },
   setup() {
     const router = useRouter();
@@ -131,7 +134,10 @@ export default {
 .min-h-screen {
   min-height: 100vh;
 }
-
+form {
+  max-width: 400px;
+  width: 100%;
+}
 .flex {
   display: flex;
 }

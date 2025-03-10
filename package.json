@@ -12,8 +12,10 @@
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/vue-fontawesome": "^3.0.8",
+    "@mapbox/mapbox-gl-directions": "^4.3.1",
     "canvas-confetti": "^1.9.3",
     "firebase": "^11.4.0",
+    "mapbox-gl": "^3.10.0",
     "vue": "^3.3.4",
     "vue-router": "^4.2.5"
   },

@@ -48,8 +48,16 @@ module.exports = {
         "custom-left": "calc(25% + 16.6666%)" // 1/4 + 1/6
       },
       fontFamily: {
-        'sans': ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
+        'sans': ['mr-eaves-xl-modern-narrow', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
       },
+      fontSize: {
+        'base': '1rem',
+        'xl': '1rem',
+        '2xl': '1.5rem',
+        '3xl': '2rem',
+        '4xl': '2.5rem',
+        '5xl': '3rem',
+        '6xl': '4rem',},
       textColor: {
         'mcm-title': '#111827', // Dark text for headings
         'mcm-body': '#4B5563',  // Slightly lighter for body

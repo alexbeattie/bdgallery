@@ -1,5 +1,8 @@
 <template>
-  <nav class="bg-gray-900 border-b-2">
+  <nav
+    class="bg-gray-900 border-b-2"
+    :class="[isDarkMode ? 'border-shafali-purple' : 'border-shafali-light-purple']"
+  >
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16">
         <!-- Logo -->
@@ -7,17 +10,22 @@
           <router-link to="/" class="flex items-center">
             <!-- Mid-century starburst icon -->
             <span class="w-8 h-8 mr-2">
-              <svg viewBox="0 0 100 100" class="w-full h-full" fill="white">
+              <svg
+                viewBox="0 0 100 100"
+                class="w-full h-full"
+                  :class="isDarkMode ? 'text-white' : 'text-white'"
+
+              >
                 <path
                   d="M50 0 L55 40 L95 45 L55 50 L50 90 L45 50 L5 45 L45 40 Z"
                   fill="white"
+
                 />
               </svg>
             </span>
-            <span
-              class="text-white font-medium text-xl tracking-wider uppercase"
-              >Shafali's 50th Party
-            </span>
+            <span class="text-white font-medium text-xl tracking-wider uppercase"
+              >Shafali's 50th Party</span
+            >
           </router-link>
         </div>
 
@@ -26,12 +34,12 @@
           <div class="ml-10 flex items-center space-x-4">
             <router-link
               to="/party-invitation"
-              class="px-5 py-2 font-medium tracking-wide uppercase duration-"
+              class="px-5 py-2 font-medium tracking-wide uppercase transform -rotate-1 hover:rotate-0 transition-transform duration-300"
               :class="[
-                ,
+                isDarkMode ? 'bg-shafali-purple' : 'bg-shafali-light-purple',
                 route.path === '/party-invitation'
                   ? 'text-white font-bold'
-                  : 'text-gray-800',
+                  : 'text-gray-300',
               ]"
             >
               Party!
@@ -42,11 +50,9 @@
               class="px-3 py-2 uppercase tracking-wide font-light transition-all"
               :class="[
                 route.path === '/gallery'
-                  ? 'text-white font-bold border-b-2 border-mcm-orange-500'
-                  : 'text-gray-800',
-                isDarkMode
-                  ? 'hover:text-mcm-orange-500'
-                  : 'hover:text-amber-500',
+                  ? 'text-white font-bold border-b-2 border-shafali-purple'
+                  : 'text-gray-300',
+                isDarkMode ? 'hover:text-shafali-purple' : 'hover:text-shafali-light-purple',
               ]"
             >
               Gallery
@@ -57,11 +63,9 @@
               class="px-3 py-2 uppercase tracking-wide font-light transition-all"
               :class="[
                 route.path === '/upload'
-                  ? 'text-white font-bold border-b-2 border-mcm-orange-500'
-                  : 'text-gray-800',
-                isDarkMode
-                  ? 'hover:text-mcm-orange-500'
-                  : 'hover:text-amber-500',
+                  ? 'text-white font-bold border-b-2 border-shafali-purple'
+                  : 'text-gray-300',
+                isDarkMode ? 'hover:text-shafali-purple' : 'hover:text-shafali-light-purple',
               ]"
             >
               Upload
@@ -72,11 +76,9 @@
               class="px-3 py-2 uppercase tracking-wide font-light transition-all"
               :class="[
                 route.path === '/dashboard'
-                  ? 'text-white font-bold border-b-2 border-mcm-orange-500'
-                  : 'text-gray-800',
-                isDarkMode
-                  ? 'hover:text-mcm-orange-500'
-                  : 'hover:text-amber-500',
+                  ? 'text-white font-bold border-b-2 border-shafali-purple'
+                  : 'text-gray-300',
+                isDarkMode ? 'hover:text-shafali-purple' : 'hover:text-shafali-light-purple',
               ]"
             >
               Dashboard
@@ -86,20 +88,20 @@
             <template v-if="!user">
               <router-link
                 to="/login"
-                class="text-gray-800 px-3 py-2 uppercase tracking-wide font-light"
+                class="text-gray-300 px-3 py-2 uppercase tracking-wide font-light"
                 :class="{
-                  'hover:text-mcm-orange-500': isDarkMode,
-                  'hover:text-amber-500': !isDarkMode,
+                  'hover:text-shafali-purple': isDarkMode,
+                  'hover:text-shafali-light-purple': !isDarkMode,
                 }"
               >
                 Login
               </router-link>
               <router-link
                 to="/signup"
-                class="text-gray-800 px-3 py-2 uppercase tracking-wide font-light"
+                class="text-gray-300 px-3 py-2 uppercase tracking-wide font-light"
                 :class="{
-                  'hover:text-mcm-orange-500': isDarkMode,
-                  'hover:text-amber-500': !isDarkMode,
+                  'hover:text-shafali-purple': isDarkMode,
+                  'hover:text-shafali-light-purple': !isDarkMode,
                 }"
               >
                 Signup
@@ -116,8 +118,8 @@
               >
                 <span class="sr-only">Open user menu</span>
                 <span
-                  class="h-8 w-8 rounded-full bg-mcm-amber-500 flex items-center justify-center text-white"
-                  :class="{ 'bg-mcm-orange-500': isDarkMode }"
+                  class="h-8 w-8 rounded-full bg-shafali-purple flex items-center justify-center text-white"
+                  :class="{ 'bg-shafali-light-purple': isDarkMode }"
                 >
                   {{ user.email.charAt(0).toUpperCase() }}
                 </span>
@@ -126,18 +128,18 @@
               <!-- Dropdown menu -->
               <div
                 v-if="userMenuOpen"
-                class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white dark:bg-mcm-gray-800 py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white dark:bg-shafali-dark-blue py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
               >
                 <router-link
                   to="/profile"
-                  class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-800 hover:bg-gray-100 dark:hover:bg-mcm-gray-700"
+                  class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-700 hover:bg-gray-100 dark:hover:bg-shafali-blue"
                   @click="userMenuOpen = false"
                 >
                   Your Profile
                 </router-link>
                 <router-link
                   to="/upload"
-                  class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-800 hover:bg-gray-100 dark:hover:bg-mcm-gray-700"
+                  class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-700 hover:bg-gray-100 dark:hover:bg-shafali-blue"
                   @click="userMenuOpen = false"
                 >
                   Upload Photos
@@ -145,7 +147,7 @@
                 <template v-if="isAdmin">
                   <router-link
                     to="/admin"
-                    class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-800 hover:bg-gray-100 dark:hover:bg-mcm-gray-700"
+                    class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-700 hover:bg-gray-100 dark:hover:bg-shafali-blue"
                     @click="userMenuOpen = false"
                   >
                     Admin Dashboard
@@ -153,38 +155,66 @@
                 </template>
                 <button
                   @click="handleLogout"
-                  class="block w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-800 hover:bg-gray-100 dark:hover:bg-mcm-gray-700"
+                  class="block w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-700 hover:bg-gray-100 dark:hover:bg-shafali-blue"
                 >
                   Sign out
                 </button>
               </div>
             </div>
-
-            <!-- Theme toggle button -->
           </div>
         </div>
 
         <!-- Mobile menu button -->
         <div class="md:hidden flex items-center">
-          <!-- Theme toggle button (mobile) -->
+          <button
+            @click="toggleMobileMenu"
+            type="button"
+  class="inline-flex items-center justify-center p-2 rounded-md text-white"
+          >
+            <svg
+              class="h-6 w-6"
+              :class="{ hidden: mobileMenuOpen, block: !mobileMenuOpen }"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+            <svg
+              class="h-6 w-6"
+              :class="{ block: mobileMenuOpen, hidden: !mobileMenuOpen }"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
         </div>
       </div>
     </div>
 
     <!-- Mobile menu -->
-    <div
-      class="md:hidden"
-      :class="{ block: mobileMenuOpen, hidden: !mobileMenuOpen }"
-    >
+    <div class="md:hidden" :class="{ block: mobileMenuOpen, hidden: !mobileMenuOpen }">
       <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-gray-700">
         <router-link
           to="/party-invitation"
-          class="block px-5 py-2 font-medium tracking-wide uppercase duration-300"
+          class="block px-5 py-2 font-medium tracking-wide uppercase transform -rotate-1 hover:rotate-0 transition-transform duration-700"
           :class="[
-            isDarkMode ? 'bg-mcm-orange-500' : 'bg-amber-500',
-            route.path === '/party-invitation'
-              ? 'text-white font-bold'
-              : 'text-gray-800',
+            isDarkMode ? 'bg-shafali-purple' : 'bg-shafali-light-purple',
+            route.path === '/party-invitation' ? 'text-white font-bold' : 'text-gray-700',
           ]"
         >
           Party!
@@ -194,9 +224,9 @@
           class="block px-3 py-2 uppercase tracking-wide font-light transition-all"
           :class="[
             route.path === '/gallery'
-              ? 'text-white font-bold border-b-2 border-mcm-orange-500'
-              : 'text-gray-800',
-            isDarkMode ? 'hover:text-mcm-orange-500' : 'hover:text-amber-500',
+              ? 'text-white font-bold border-b-2 border-shafali-purple'
+              : 'text-gray-300',
+            isDarkMode ? 'hover:text-shafali-purple' : 'hover:text-shafali-light-purple',
           ]"
         >
           Gallery
@@ -207,9 +237,9 @@
           class="block px-3 py-2 uppercase tracking-wide font-light transition-all"
           :class="[
             route.path === '/upload'
-              ? 'text-white font-bold border-b-2 border-mcm-orange-500'
-              : 'text-gray-800',
-            isDarkMode ? 'hover:text-mcm-orange-500' : 'hover:text-amber-500',
+              ? 'text-white font-bold border-b-2 border-shafali-purple'
+              : 'text-gray-300',
+            isDarkMode ? 'hover:text-shafali-purple' : 'hover:text-shafali-light-purple',
           ]"
         >
           Upload
@@ -220,9 +250,9 @@
           class="block px-3 py-2 uppercase tracking-wide font-light transition-all"
           :class="[
             route.path === '/dashboard'
-              ? 'text-white font-bold border-b-2 border-mcm-orange-500'
-              : 'text-gray-800',
-            isDarkMode ? 'hover:text-mcm-orange-500' : 'hover:text-amber-500',
+              ? 'text-white font-bold border-b-2 border-shafali-purple'
+              : 'text-gray-300',
+            isDarkMode ? 'hover:text-shafali-purple' : 'hover:text-shafali-light-purple',
           ]"
         >
           Dashboard
@@ -231,10 +261,10 @@
         <template v-if="user">
           <router-link
             to="/profile"
-            class="block px-3 py-2 text-gray-800 uppercase tracking-wide font-light"
+            class="block px-3 py-2 text-gray-300 uppercase tracking-wide font-light"
             :class="{
-              'hover:text-mcm-orange-500': isDarkMode,
-              'hover:text-amber-500': !isDarkMode,
+              'hover:text-shafali-purple': isDarkMode,
+              'hover:text-shafali-light-purple': !isDarkMode,
             }"
           >
             Profile
@@ -243,10 +273,10 @@
           <template v-if="isAdmin">
             <router-link
               to="/admin"
-              class="block px-3 py-2 text-gray-800 uppercase tracking-wide font-light"
+              class="block px-3 py-2 text-gray-300 uppercase tracking-wide font-light"
               :class="{
-                'hover:text-mcm-orange-500': isDarkMode,
-                'hover:text-amber-500': !isDarkMode,
+                'hover:text-shafali-purple': isDarkMode,
+                'hover:text-shafali-light-purple': !isDarkMode,
               }"
             >
               Admin
@@ -255,10 +285,10 @@
 
           <button
             @click="handleLogout"
-            class="block w-full text-left px-3 py-2 text-gray-800 uppercase tracking-wide font-light"
+            class="block w-full text-left px-3 py-2 text-gray-300 uppercase tracking-wide font-light"
             :class="{
-              'hover:text-mcm-orange-500': isDarkMode,
-              'hover:text-amber-500': !isDarkMode,
+              'hover:text-shafali-purple': isDarkMode,
+              'hover:text-shafali-light-purple': !isDarkMode,
             }"
           >
             Logout
@@ -267,20 +297,20 @@
         <template v-else>
           <router-link
             to="/login"
-            class="block px-3 py-2 text-gray-800 uppercase tracking-wide font-light"
+            class="block px-3 py-2 text-gray-300 uppercase tracking-wide font-light"
             :class="{
-              'hover:text-mcm-orange-500': isDarkMode,
-              'hover:text-amber-500': !isDarkMode,
+              'hover:text-shafali-purple': isDarkMode,
+              'hover:text-shafali-light-purple': !isDarkMode,
             }"
           >
             Login
           </router-link>
           <router-link
             to="/signup"
-            class="block px-3 py-2 text-gray-800 uppercase tracking-wide font-light"
+            class="block px-3 py-2 text-gray-300 uppercase tracking-wide font-light"
             :class="{
-              'hover:text-mcm-orange-500': isDarkMode,
-              'hover:text-amber-500': !isDarkMode,
+              'hover:text-shafali-purple': isDarkMode,
+              'hover:text-shafali-light-purple': !isDarkMode,
             }"
           >
             Signup
@@ -296,20 +326,15 @@ import { ref, onMounted, onUnmounted, watch } from "vue";
 import { useRouter, useRoute } from "vue-router";
 import { signOut, onAuthStateChanged } from "firebase/auth";
 import { auth } from "../firebase/config";
-import { BaseThemeToggle } from "./base";
 
 export default {
-  name: "NavBar",
-  components: {
-    BaseThemeToggle,
-  },
+  name: "UnifiedNavBar",
   props: {
     isDarkMode: {
       type: Boolean,
       default: false,
     },
   },
-  emits: ["toggleTheme"],
   setup() {
     const router = useRouter();
     const route = useRoute();

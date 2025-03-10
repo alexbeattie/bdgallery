@@ -1,11 +1,15 @@
 <template>
-  <div class="min-h-screen p-4 flex flex-col justify-center items-center bg-[#fefcff]">
-    <main class="py-16 flex-1 flex flex-col justify-center items-center text-center max-w-4xl w-full">
-      <h1 class="m-0 mb-8 text-4xl font-bold bg-gradient-to-r from-[#ff6b6b] via-[#ff9e7d] to-[#ffd670] text-transparent bg-clip-text">
+  <div
+    class="min-h-screen p-4 flex flex-col justify-center items-center bg-[#fefcff]"
+  >
+    <main
+      class="py-16 flex-1 flex flex-col justify-center items-center text-center max-w-4xl w-full"
+    >
+      <h1
+        class="m-0 mb-8 text-4xl font-bold bg-gradient-to-r from-[#ff6b6b] via-[#ff9e7d] to-[#ffd670] text-transparent bg-clip-text"
+      >
         Share Your Memories
       </h1>
-
-  
 
       <div v-if="loading" class="text-lg">Loading...</div>
 
@@ -25,7 +29,9 @@
               class="w-full p-3 border border-gray-300 rounded-md text-base bg-gray-50"
               readonly
             />
-            <p class="text-sm text-gray-500 mt-1">This name will appear with your uploaded photos</p>
+            <p class="text-sm text-gray-500 mt-1">
+              This name will appear with your uploaded photos
+            </p>
           </div>
 
           <div class="mb-6">
@@ -80,24 +86,34 @@
             {{ uploading ? "Uploading..." : "Submit" }}
           </button>
 
-              <button
-        @click="handleLogout"
-        class="mb-6 px-4 py-2 bg-gray-200 rounded-md"
-      >
-        Logout
-      </button>
+          <button
+            @click="handleLogout"
+            class="mb-6 px-4 py-2 bg-gray-200 rounded-md"
+          >
+            Logout
+          </button>
         </form>
       </div>
 
-      <div v-else class="bg-white rounded-lg shadow-md p-8 w-full max-w-2xl text-center mb-6">
-        <h2 class="text-[#ff6b6b] text-2xl font-bold mb-4">
-          Thank You!
-        </h2>
+      <div
+        v-else
+        class="bg-white rounded-lg shadow-md p-8 w-full max-w-2xl text-center mb-6"
+      >
+        <h2 class="text-[#ff6b6b] text-2xl font-bold mb-4">Thank You!</h2>
+        <p>
+          <img src="/public/images/50th.png" alt="">
+          <a
+            href="https://links.paperlesspost.com/ls/click?upn=u001.fp1Y-2B-2B6EsH5Pp5ZB1HM8Q9NOaIRTPFTb2Sy8VZ2FuNPBKHnYkKQYNY7A-2F4lerwiLSu-2BdVHhYu4EgYQCkWNwYZ5AJUWAy6xzjWzjzlkBd0Oez5CGYoBVui-2Fla7MGNpAJNmSw4UCBDDNf9mZ5X5RSPBa07sQ-2FZNdrwkt23TjNwHbUFT6iM2NsXdS9p2r6d-2F-2B8oKEZYeOwQnTO-2Fkq6eGTl7qT3vzN2rqrOfNjcog84TxR1XVK1DZgj9HqLuCkrNkk15cgDIyPb8WLCqeysyiMK0pQ-3D-3DOcPT_L9vtWzwsmwvk7wdq732xNBeptxflwyIYytUIrzm7xjQ0a6z45AVy67cX947Ciy5tqdzNrNmvrZ7JhLrEslyACku0h5lFnVL6B8PAoOtDuh5VaTudu5A-2BDLLyXr2VMY1SUCesY630Z7BOmVKU-2Fc7Yx7EJsgBXnuvvyEGVKLqwxD5QL78oFjVzcXi4c2Q5bIflgjmStcFaRBJP0QpaHFsfLhbsgeXJVbUm1rsIu7UUQ1XnpORSGolod3dsGckxwabT1uWU5SC6BEeYzo8Kcdy-2FtuhEOl2NkALuROU3aazuPJcX3feEKhQQdcx36cw-2FndMqN8SdyzWExcy2PJi5osUqHmSVRR7Oon-2FRRoRHjgwzKJbMzwHPDv0WkR20212mVKT3"
+            >View Party Details</a
+          >
+        </p>
         <p class="mb-6">
           Your photos and message have been uploaded successfully.
         </p>
         <router-link to="/gallery">
-          <button class="bg-gradient-to-r from-[#ff6b6b] to-[#ff9e7d] text-white border-none py-3 px-6 rounded-md text-base cursor-pointer transition-all hover:translate-y-[-2px] hover:shadow-md w-full mb-4">
+          <button
+            class="bg-gradient-to-r from-[#ff6b6b] to-[#ff9e7d] text-white border-none py-3 px-6 rounded-md text-base cursor-pointer transition-all hover:translate-y-[-2px] hover:shadow-md w-full mb-4"
+          >
             View Gallery
           </button>
         </router-link>
@@ -107,27 +123,39 @@
 </template>
 
 <script>
-import { ref, onMounted, onUnmounted } from 'vue';
-import { useRouter } from 'vue-router';
-import { onAuthStateChanged, signOut } from 'firebase/auth';
-import { ref as storageRef, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { collection, addDoc, serverTimestamp, doc, getDoc } from 'firebase/firestore';
-import { auth, storage, db } from '../firebase/config';
+import { ref, onMounted, onUnmounted } from "vue";
+import { useRouter } from "vue-router";
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import {
+  ref as storageRef,
+  uploadBytes,
+  getDownloadURL,
+} from "firebase/storage";
+import {
+  collection,
+  addDoc,
+  serverTimestamp,
+  doc,
+  getDoc,
+} from "firebase/firestore";
+import { auth, storage, db } from "../firebase/config";
+import NavBar from '@/components/NavBar.vue';
 
 export default {
-  name: 'UploadView',
+  components: { NavBar },
+  name: "UploadView",
   setup() {
     const router = useRouter();
     const user = ref(null);
     const loading = ref(true);
-    const name = ref('');
-    const message = ref('');
+    const name = ref("");
+    const message = ref("");
     const images = ref([]);
     const uploading = ref(false);
     const submitted = ref(false);
     const previewUrls = ref([]);
-    const error = ref('');
-    
+    const error = ref("");
+
     let unsubscribe = null;
 
     onMounted(() => {
@@ -135,21 +163,21 @@ export default {
         if (currentUser) {
           console.log("User authenticated:", currentUser.email);
           user.value = currentUser;
-          
+
           // Auto-fill the name from Firestore
           try {
-            const userDoc = await getDoc(doc(db, 'users', currentUser.uid));
+            const userDoc = await getDoc(doc(db, "users", currentUser.uid));
             if (userDoc.exists() && userDoc.data().name) {
               name.value = userDoc.data().name;
             } else if (currentUser.displayName) {
               name.value = currentUser.displayName;
             } else {
-              name.value = currentUser.email.split('@')[0];
+              name.value = currentUser.email.split("@")[0];
             }
           } catch (err) {
             console.error("Error fetching user profile:", err);
             // Fallback if Firestore lookup fails
-            name.value = currentUser.email.split('@')[0];
+            name.value = currentUser.email.split("@")[0];
           }
         } else {
           console.error("User NOT authenticated");
@@ -172,14 +200,14 @@ export default {
         console.error("Logout error:", error);
       }
     };
-    
+
     const handleFileChange = (e) => {
       const selectedFiles = Array.from(e.target.files);
       images.value = selectedFiles;
 
       // Create preview URLs
       previewUrls.value = [];
-      selectedFiles.forEach(file => {
+      selectedFiles.forEach((file) => {
         previewUrls.value.push(URL.createObjectURL(file));
       });
     };
@@ -196,7 +224,7 @@ export default {
       }
 
       uploading.value = true;
-      error.value = '';
+      error.value = "";
 
       try {
         const uploadPromises = images.value.map(async (image, index) => {
@@ -205,16 +233,16 @@ export default {
           // Create a storage reference directly
           const fileName = `${Date.now()}-${image.name}`;
           const fileRef = storageRef(storage, `birthday-images/${fileName}`);
-          
+
           // Upload directly to Firebase Storage
           console.log(`Uploading image ${index} directly to Firebase Storage`);
           const uploadResult = await uploadBytes(fileRef, image);
           console.log(`Image ${index} uploaded successfully`);
-          
+
           // Get download URL
           const downloadURL = await getDownloadURL(uploadResult.ref);
           console.log(`Download URL for image ${index}:`, downloadURL);
-          
+
           // Add to Firestore
           try {
             const docRef = await addDoc(collection(db, "birthdayImages"), {
@@ -225,12 +253,18 @@ export default {
               userId: user.value.uid,
               timestamp: serverTimestamp(),
             });
-            console.log(`Firestore document created for image ${index}:`, docRef.id);
+            console.log(
+              `Firestore document created for image ${index}:`,
+              docRef.id
+            );
           } catch (firestoreError) {
-            console.error(`Firestore error for image ${index}:`, firestoreError);
+            console.error(
+              `Firestore error for image ${index}:`,
+              firestoreError
+            );
             // Continue even if Firestore fails
           }
-          
+
           return downloadURL;
         });
 
@@ -261,12 +295,11 @@ export default {
       error,
       handleLogout,
       handleFileChange,
-      handleSubmit
+      handleSubmit,
     };
-  }
+  },
 };
 </script>
-
 
 <style scoped>
 /* Tailwind-like styling */
@@ -347,7 +380,8 @@ export default {
 
 .via-\[\#ff9e7d\] {
   --tw-gradient-via: #ff9e7d;
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-via), var(--tw-gradient-to);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-via),
+    var(--tw-gradient-to);
 }
 
 .to-\[\#ffd670\] {
@@ -399,7 +433,8 @@ export default {
 }
 
 .shadow-md {
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 .p-8 {
@@ -516,7 +551,8 @@ export default {
 }
 
 .hover\:shadow-md:hover {
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 .disabled\:opacity-70:disabled {
