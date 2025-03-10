@@ -1,0 +1,39 @@
+name: Deploy to Firebase Hosting
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the repository code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Node.js (required for building your Vue.js app)
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18 # Use the Node.js version your project requires
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Step 4: Build the Vue.js project
+      - name: Build project
+        run: npm run build
+
+      # Step 5: Authenticate Firebase using the service account key
+      - name: Authenticate Firebase
+        run: |
+          echo "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}" > service-account.json
+          export GOOGLE_APPLICATION_CREDENTIALS=service-account.json
+          firebase login:ci --no-localhost --token "$(gcloud auth application-default print-access-token)"
+
+      # Step 6: Deploy to Firebase Hosting
+      - name: Deploy to Firebase
+        run: firebase deploy --only hosting
