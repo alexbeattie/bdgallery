@@ -13,13 +13,11 @@
               <svg
                 viewBox="0 0 100 100"
                 class="w-full h-full"
-                  :class="isDarkMode ? 'text-white' : 'text-white'"
-
+                :class="isDarkMode ? 'text-white' : 'text-white'"
               >
                 <path
                   d="M50 0 L55 40 L95 45 L55 50 L50 90 L45 50 L5 45 L45 40 Z"
                   fill="white"
-
                 />
               </svg>
             </span>
@@ -45,57 +43,58 @@
               Party!
             </router-link>
 
-            <router-link
-              to="/gallery"
-              class="px-3 py-2 uppercase tracking-wide font-light transition-all"
-              :class="[
-                route.path === '/gallery'
-                  ? 'text-white font-bold border-b-2 border-shafali-purple'
-                  : 'text-gray-300',
-                isDarkMode ? 'hover:text-shafali-purple' : 'hover:text-shafali-light-purple',
-              ]"
-            >
-              Gallery
-            </router-link>
+            <!-- Protected routes only shown to logged-in users -->
+            <template v-if="user">
+              <router-link
+                to="/gallery"
+                class="px-3 py-2 uppercase tracking-wide font-light transition-all"
+                :class="[
+                  route.path === '/gallery'
+                    ? 'text-white font-bold border-b-2 border-shafali-purple'
+                    : 'text-gray-300',
+                  isDarkMode ? 'hover:text-shafali-purple' : 'hover:text-shafali-light-purple',
+                ]"
+              >
+                Gallery
+              </router-link>
 
-            <router-link
-              to="/upload"
-              class="px-3 py-2 uppercase tracking-wide font-light transition-all"
-              :class="[
-                route.path === '/upload'
-                  ? 'text-white font-bold border-b-2 border-shafali-purple'
-                  : 'text-gray-300',
-                isDarkMode ? 'hover:text-shafali-purple' : 'hover:text-shafali-light-purple',
-              ]"
-            >
-              Upload
-            </router-link>
+              <router-link
+                to="/upload"
+                class="px-3 py-2 uppercase tracking-wide font-light transition-all"
+                :class="[
+                  route.path === '/upload'
+                    ? 'text-white font-bold border-b-2 border-shafali-purple'
+                    : 'text-gray-300',
+                  isDarkMode ? 'hover:text-shafali-purple' : 'hover:text-shafali-light-purple',
+                ]"
+              >
+                Upload
+              </router-link>
 
-            <router-link
-              to="/dashboard"
-              class="px-3 py-2 uppercase tracking-wide font-light transition-all"
-              :class="[
-                route.path === '/dashboard'
-                  ? 'text-white font-bold border-b-2 border-shafali-purple'
-                  : 'text-gray-300',
-                isDarkMode ? 'hover:text-shafali-purple' : 'hover:text-shafali-light-purple',
-              ]"
-            >
-              Dashboard
-            </router-link>
+              <router-link
+                to="/dashboard"
+                class="px-3 py-2 uppercase tracking-wide font-light transition-all"
+                :class="[
+                  route.path === '/dashboard'
+                    ? 'text-white font-bold border-b-2 border-shafali-purple'
+                    : 'text-gray-300',
+                  isDarkMode ? 'hover:text-shafali-purple' : 'hover:text-shafali-light-purple',
+                ]"
+              >
+                Dashboard
+              </router-link>
+            </template>
 
             <!-- Authentication Links -->
             <template v-if="!user">
+              <!-- Bold login button with high visibility -->
               <router-link
                 to="/login"
-                class="text-gray-300 px-3 py-2 uppercase tracking-wide font-light"
-                :class="{
-                  'hover:text-shafali-purple': isDarkMode,
-                  'hover:text-shafali-light-purple': !isDarkMode,
-                }"
+                class="px-4 py-2 text-white font-bold uppercase tracking-wide bg-shafali-purple rounded-md shadow-md hover:bg-shafali-light-purple transition-all transform hover:scale-105 flex items-center"
               >
-                Login
+                <span class="mr-1">🔒</span> Login To Upload Photos
               </router-link>
+              
               <router-link
                 to="/signup"
                 class="text-gray-300 px-3 py-2 uppercase tracking-wide font-light"
@@ -169,7 +168,7 @@
           <button
             @click="toggleMobileMenu"
             type="button"
-  class="inline-flex items-center justify-center p-2 rounded-md text-white"
+            class="inline-flex items-center justify-center p-2 rounded-md text-white"
           >
             <svg
               class="h-6 w-6"
@@ -219,44 +218,48 @@
         >
           Party!
         </router-link>
-        <router-link
-          to="/gallery"
-          class="block px-3 py-2 uppercase tracking-wide font-light transition-all"
-          :class="[
-            route.path === '/gallery'
-              ? 'text-white font-bold border-b-2 border-shafali-purple'
-              : 'text-gray-300',
-            isDarkMode ? 'hover:text-shafali-purple' : 'hover:text-shafali-light-purple',
-          ]"
-        >
-          Gallery
-        </router-link>
+        
+        <!-- Protected routes in mobile view -->
+        <template v-if="user">
+          <router-link
+            to="/gallery"
+            class="block px-3 py-2 uppercase tracking-wide font-light transition-all"
+            :class="[
+              route.path === '/gallery'
+                ? 'text-white font-bold border-b-2 border-shafali-purple'
+                : 'text-gray-300',
+              isDarkMode ? 'hover:text-shafali-purple' : 'hover:text-shafali-light-purple',
+            ]"
+          >
+            Gallery
+          </router-link>
 
-        <router-link
-          to="/upload"
-          class="block px-3 py-2 uppercase tracking-wide font-light transition-all"
-          :class="[
-            route.path === '/upload'
-              ? 'text-white font-bold border-b-2 border-shafali-purple'
-              : 'text-gray-300',
-            isDarkMode ? 'hover:text-shafali-purple' : 'hover:text-shafali-light-purple',
-          ]"
-        >
-          Upload
-        </router-link>
+          <router-link
+            to="/upload"
+            class="block px-3 py-2 uppercase tracking-wide font-light transition-all"
+            :class="[
+              route.path === '/upload'
+                ? 'text-white font-bold border-b-2 border-shafali-purple'
+                : 'text-gray-300',
+              isDarkMode ? 'hover:text-shafali-purple' : 'hover:text-shafali-light-purple',
+            ]"
+          >
+            Upload
+          </router-link>
 
-        <router-link
-          to="/dashboard"
-          class="block px-3 py-2 uppercase tracking-wide font-light transition-all"
-          :class="[
-            route.path === '/dashboard'
-              ? 'text-white font-bold border-b-2 border-shafali-purple'
-              : 'text-gray-300',
-            isDarkMode ? 'hover:text-shafali-purple' : 'hover:text-shafali-light-purple',
-          ]"
-        >
-          Dashboard
-        </router-link>
+          <router-link
+            to="/dashboard"
+            class="block px-3 py-2 uppercase tracking-wide font-light transition-all"
+            :class="[
+              route.path === '/dashboard'
+                ? 'text-white font-bold border-b-2 border-shafali-purple'
+                : 'text-gray-300',
+              isDarkMode ? 'hover:text-shafali-purple' : 'hover:text-shafali-light-purple',
+            ]"
+          >
+            Dashboard
+          </router-link>
+        </template>
 
         <template v-if="user">
           <router-link
@@ -295,16 +298,14 @@
           </button>
         </template>
         <template v-else>
+          <!-- Bold login button in mobile menu -->
           <router-link
             to="/login"
-            class="block px-3 py-2 text-gray-300 uppercase tracking-wide font-light"
-            :class="{
-              'hover:text-shafali-purple': isDarkMode,
-              'hover:text-shafali-light-purple': !isDarkMode,
-            }"
+            class="block px-4 py-3 text-white font-bold uppercase tracking-wide bg-shafali-purple rounded-md shadow-md mb-2 text-center"
           >
-            Login
+            🔒 Login To Upload Photos
           </router-link>
+          
           <router-link
             to="/signup"
             class="block px-3 py-2 text-gray-300 uppercase tracking-wide font-light"
@@ -356,6 +357,12 @@ export default {
           isAdmin.value = true;
         } else {
           isAdmin.value = false;
+        }
+        
+        // Redirect from protected routes if not logged in
+        const protectedRoutes = ['/gallery', '/upload', '/dashboard'];
+        if (!currentUser && protectedRoutes.includes(route.path)) {
+          router.push('/login');
         }
       });
 

@@ -100,13 +100,13 @@
         class="bg-white rounded-lg shadow-md p-8 w-full max-w-2xl text-center mb-6"
       >
         <h2 class="text-[#ff6b6b] text-2xl font-bold mb-4">Thank You!</h2>
-        <p>
+        <!-- <p>
           <img src="/public/images/50th.png" alt="">
           <a
             href="https://links.paperlesspost.com/ls/click?upn=u001.fp1Y-2B-2B6EsH5Pp5ZB1HM8Q9NOaIRTPFTb2Sy8VZ2FuNPBKHnYkKQYNY7A-2F4lerwiLSu-2BdVHhYu4EgYQCkWNwYZ5AJUWAy6xzjWzjzlkBd0Oez5CGYoBVui-2Fla7MGNpAJNmSw4UCBDDNf9mZ5X5RSPBa07sQ-2FZNdrwkt23TjNwHbUFT6iM2NsXdS9p2r6d-2F-2B8oKEZYeOwQnTO-2Fkq6eGTl7qT3vzN2rqrOfNjcog84TxR1XVK1DZgj9HqLuCkrNkk15cgDIyPb8WLCqeysyiMK0pQ-3D-3DOcPT_L9vtWzwsmwvk7wdq732xNBeptxflwyIYytUIrzm7xjQ0a6z45AVy67cX947Ciy5tqdzNrNmvrZ7JhLrEslyACku0h5lFnVL6B8PAoOtDuh5VaTudu5A-2BDLLyXr2VMY1SUCesY630Z7BOmVKU-2Fc7Yx7EJsgBXnuvvyEGVKLqwxD5QL78oFjVzcXi4c2Q5bIflgjmStcFaRBJP0QpaHFsfLhbsgeXJVbUm1rsIu7UUQ1XnpORSGolod3dsGckxwabT1uWU5SC6BEeYzo8Kcdy-2FtuhEOl2NkALuROU3aazuPJcX3feEKhQQdcx36cw-2FndMqN8SdyzWExcy2PJi5osUqHmSVRR7Oon-2FRRoRHjgwzKJbMzwHPDv0WkR20212mVKT3"
             >View Party Details</a
           >
-        </p>
+        </p> -->
         <p class="mb-6">
           Your photos and message have been uploaded successfully.
         </p>

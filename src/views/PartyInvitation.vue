@@ -92,11 +92,140 @@
                 </li>
               </ul>
             </div>
+
+            <div class="photo-upload-callout my-10 max-w-lg mx-auto">
+              <div
+                class="bg-white border-2 border-shafali-purple p-6 rounded-lg relative overflow-hidden shadow-md"
+              >
+                <!-- Decorative camera icon -->
+                <div
+                  class="absolute -right-4 -top-4 text-shafali-purple opacity-20"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-32 w-32"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="1"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"
+                    />
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"
+                    />
+                  </svg>
+                </div>
+
+                <h3 class="text-xl font-bold text-shafali-purple mb-2">
+                  Share Your Photos!
+                </h3>
+                <p class="text-shafali-dark-blue mb-4">
+                  Help make Shafali's birthday celebration even more special by
+                  sharing your favorite photos of your memories together.
+                </p>
+
+                <div v-if="isLoggedIn">
+                  <router-link to="/upload" class="inline-block">
+                    <button
+                      class="bg-white text-shafali-purple border-2 border-shafali-purple hover:bg-shafali-purple hover:text-white font-bold py-2 px-4 rounded-md transition-all transform hover:scale-105 flex items-center"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5 mr-2"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM6.293 6.707a1 1 0 010-1.414l3-3a1 1 0 011.414 0l3 3a1 1 0 01-1.414 1.414L11 5.414V13a1 1 0 11-2 0V5.414L7.707 6.707a1 1 0 01-1.414 0z"
+                          clip-rule="evenodd"
+                        />
+                      </svg>
+                      Upload Your Photos
+                    </button>
+                  </router-link>
+                </div>
+                <div v-else>
+                  <router-link
+                    to="/login?redirect=/upload"
+                    class="inline-block"
+                  >
+                    <button
+                      class="bg-white text-shafali-purple border-2 border-shafali-purple hover:bg-shafali-purple hover:text-white font-bold py-2 px-4 rounded-md transition-all transform hover:scale-105 flex items-center"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5 mr-2"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M18 8a6 6 0 01-7.743 5.743L10 14l-1 1-1 1H6v-1l1-1 1-1-.257-.257A6 6 0 1118 8zm-6-4a1 1 0 100 2 2 2 0 012 2 1 1 0 102 0 4 4 0 00-4-4z"
+                          clip-rule="evenodd"
+                        />
+                      </svg>
+                      Login to Upload Photos
+                    </button>
+                  </router-link>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
+  <div
+  class="browse-photos-banner py-12 bg-white text-[#6c2c9b] text-center border-y-2 border-[#6c2c9b]"
+>
+  <div class="max-w-4xl mx-auto px-4">
+    <h2 class="text-2xl md:text-3xl font-bold mb-4 text-[#6c2c9b]">
+          See All Birthday Photos
+        </h2>
+    <p class="mb-6 text-[#171927]">
+          Browse the gallery to see photos shared by Shafali's friends and
+          family!
+        </p>
 
+        <div
+          class="flex flex-col sm:flex-row items-center justify-center gap-4"
+        >
+          <router-link to="/gallery" class="inline-block">
+            <button
+              class="bg-white text-shafali-purple hover:bg-shafali-very-light-purple border-2 border-shafali-purple font-bold py-3 px-6 rounded-md transition-all transform hover:scale-105 shadow-md"
+            >
+              Browse Photo Gallery
+            </button>
+          </router-link>
+
+<router-link to="/upload" class="inline-block">
+  <button
+    class="bg-white text-[#6c2c9b] hover:bg-[#f5f0fa] border-2 border-[#6c2c9b] font-bold py-3 px-6 rounded-md transition-all transform hover:scale-105 flex items-center justify-center shadow-md"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="h-5 w-5 mr-2"
+      viewBox="0 0 20 20"
+      fill="currentColor"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM6.293 6.707a1 1 0 010-1.414l3-3a1 1 0 011.414 0l3 3a1 1 0 01-1.414 1.414L11 5.414V13a1 1 0 11-2 0V5.414L7.707 6.707a1 1 0 01-1.414 0z"
+        clip-rule="evenodd"
+      />
+    </svg>
+    Upload Your Photos
+  </button>
+</router-link>
+        </div>
+      </div>
+    </div>
     <!-- Hotel Section -->
     <section id="hotel-section" class="section-wrapper section-bg-light">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -227,14 +356,14 @@
           </div>
         </div>
 
-      <div class="pt-8 border-t border-gray-700 text-center">
-  <p class="text-gray-300 hover:text-amber-500 transition">
-    A Mid-Century Modern Celebration | April 26th, 2025
-  </p>
-  <p class="mt-2 mb-0 font-medium text-white">
-    Shafali's 50th Birthday
-  </p>
-</div>
+        <div class="pt-8 border-t border-gray-700 text-center">
+          <p class="text-gray-300 hover:text-amber-500 transition">
+            A Mid-Century Modern Celebration | April 26th, 2025
+          </p>
+          <p class="mt-2 mb-0 font-medium text-white">
+            Shafali's 50th Birthday
+          </p>
+        </div>
       </div>
     </footer>
   </div>
@@ -464,17 +593,43 @@
   max-width: 100%;
   font-size: 1rem;
 }
+.photo-upload-callout {
+  transform: translateY(0);
+  transition: transform 0.3s ease;
+}
+
+.photo-upload-callout:hover {
+  transform: translateY(-5px);
+}
+
+.browse-photos-banner {
+  position: relative;
+  overflow: hidden;
+}
+
+.browse-photos-banner::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3z" fill="%236c2c9b" fill-opacity="0.1" fill-rule="evenodd"/></svg>');
+  opacity: 0.2;
+}
 </style>
 <script setup>
 import { ref, onMounted } from "vue";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "@/firebase/config";
 import confetti from "canvas-confetti";
 import mapboxgl from "mapbox-gl";
 import MapboxDirections from "@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions";
 import "@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions.css";
 // import NavBar from "@/components/NavBar.vue"; // Only import NavBar once with the correct path
 // Mobile menu state
+const isLoggedIn = ref(false);
 
-import NavigationBar from "@/components/NavigationBar.vue";
 const mobileMenuOpen = ref(false);
 const map = ref(null);
 // Add an array to store hotel markers
@@ -510,6 +665,11 @@ const hotels = [
     phone: "310-855-1115",
   },
 ];
+onMounted(() => {
+  onAuthStateChanged(auth, (user) => {
+    isLoggedIn.value = !!user;
+  });
+});
 
 // Function to show a specific hotel on the map
 function showHotelOnMap(hotelIndex) {

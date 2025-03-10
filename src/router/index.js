@@ -10,7 +10,6 @@ import PartyInvitation from '../views/PartyInvitation.vue';
 import AdminDashboard from '../views/AdminDashboard.vue';
 import UserProfile from '../views/UserProfile.vue';
 import DashboardView from '../views/DashboardView.vue';
-// import McmButtonDemo from '../components/McmButtonDemo.vue';
 
 const routes = [
   {
@@ -104,7 +103,7 @@ router.beforeEach(async (to, from, next) => {
     if (requiresAdmin) {
       // Check if user has admin rights (for a real app, you'd fetch this from Firestore)
       // For demonstration, we'll check if their email matches an admin email
-    const adminEmails = ["artisanbranding@gmail.com", "ShafaliSpurlingJeste@gmail.com"]; // Add your admin emails here
+      const adminEmails = ['artisanb@me.com']; // Add your admin emails here
 
       if (adminEmails.includes(currentUser.email)) {
         next();

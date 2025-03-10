@@ -3,19 +3,25 @@
     <!-- Content area with subtle texture -->
     <div class="min-h-screen bg-mcm-bg overflow-auto background-pattern">
       <div>
-        <!-- Add the UnifiedNavBar here -->
+        <!-- Navigation Bar -->
         <UnifiedNavBar />
+        
+        <!-- Main Content -->
         <main>
           <router-view />
         </main>
+        
+        <!-- Floating Upload Button visible on all pages except upload page -->
+        <FloatingUploadButton :hideOnPages="['/upload']" />
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-// Import the UnifiedNavBar component
+// Import components
 import UnifiedNavBar from '@/components/UnifiedNavBar.vue';
+import FloatingUploadButton from '@/components/FloatingUploadButton.vue';
 </script>
 
 <style>
@@ -60,5 +66,16 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #d97706;
+}
+
+/* Define your custom colors at the :root level for global access */
+:root {
+  --shafali-purple: #6c2c9b;
+  --shafali-light-purple: #9a55c8;
+  --shafali-very-light-purple: #755c96;
+  --shafali-dark-blue: #171927;
+  --shafali-blue: #292d4f;
+  --shafali-white: #ffffff;
+  --shafali-off-white: #f9f7fd;
 }
 </style>
