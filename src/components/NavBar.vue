@@ -296,12 +296,12 @@ import { ref, onMounted, onUnmounted, watch } from "vue";
 import { useRouter, useRoute } from "vue-router";
 import { signOut, onAuthStateChanged } from "firebase/auth";
 import { auth } from "../firebase/config";
-import { BaseThemeToggle } from "./base";
+// import { BaseThemeToggle } from "./base";
 
 export default {
   name: "NavBar",
   components: {
-    BaseThemeToggle,
+    // BaseThemeToggle,
   },
   props: {
     isDarkMode: {

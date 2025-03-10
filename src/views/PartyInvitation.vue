@@ -198,7 +198,7 @@
               </li>
               <li>
                 <a
-                  href="#gallery"
+                  href="gallery"
                   class="text-gray-300 hover:text-amber-500 transition"
                   >Gallery</a
                 >
@@ -227,10 +227,14 @@
           </div>
         </div>
 
-        <div class="pt-8 border-t border-gray-800 text-center">
-          <p>A Mid-Century Modern Celebration | April 26th, 2025</p>
-          <p class="mt-2">Shafali's 50th Birthday</p>
-        </div>
+      <div class="pt-8 border-t border-gray-700 text-center">
+  <p class="text-gray-300 hover:text-amber-500 transition">
+    A Mid-Century Modern Celebration | April 26th, 2025
+  </p>
+  <p class="mt-2 mb-0 font-medium text-white">
+    Shafali's 50th Birthday
+  </p>
+</div>
       </div>
     </footer>
   </div>

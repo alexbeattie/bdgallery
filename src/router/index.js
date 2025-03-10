@@ -10,7 +10,7 @@ import PartyInvitation from '../views/PartyInvitation.vue';
 import AdminDashboard from '../views/AdminDashboard.vue';
 import UserProfile from '../views/UserProfile.vue';
 import DashboardView from '../views/DashboardView.vue';
-import McmButtonDemo from '../components/McmButtonDemo.vue';
+// import McmButtonDemo from '../components/McmButtonDemo.vue';
 
 const routes = [
   {
