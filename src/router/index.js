@@ -14,58 +14,76 @@ import DashboardView from '../views/DashboardView.vue';
 const routes = [
   {
     path: '/',
-    redirect: '/party-invitation' // Redirect root path to party-invitation
-  },
-  {
-    path: '/dashboard',
-    name: 'dashboard',
-    component: DashboardView,
-    meta: { requiresAuth: true }
-  },
-  {
-    path: '/login',
-    name: 'login',
-    component: LoginView
-  },
-  {
-    path: '/signup',
-    name: 'signup',
-    component: SignupView
-  },
-  {
-    path: '/upload',
-    name: 'upload',
-    component: UploadView,
-    meta: { requiresAuth: true }
-  },
-  {
-    path: '/gallery',
-    name: 'gallery',
-    component: GalleryView,
-    meta: { requiresAuth: true } // Added auth requirement for gallery
+    redirect: '/party-invitation' // Add this redirect
   },
   {
     path: '/party-invitation',
     name: 'PartyInvitation',
-    component: PartyInvitation
+    component: () => import('../views/PartyInvitation.vue')
   },
   {
-    path: '/admin',
-    name: 'admin',
-    component: AdminDashboard,
+    path: '/login',
+    name: 'Login',
+    component: () => import('../views/LoginView.vue')
+  },
+  {
+    path: '/signup',
+    name: 'Signup',
+    component: () => import('../views/SignupView.vue')
+  },
+  {
+    path: '/auth-choice',
+    name: 'AuthChoice',
+    component: () => import('../views/AuthChoice.vue')
+  },
+  // Protected routes
+  {
+    path: '/gallery',
+    name: 'Gallery',
+    component: () => import('../views/GalleryView.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/upload',
+    name: 'Upload',
+    component: () => import('../views/UploadView.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/dashboard',
+    name: 'Dashboard',
+    component: () => import('../views/DashboardView.vue'),
     meta: { requiresAuth: true }
   },
   {
     path: '/profile',
-    name: 'profile',
-    component: UserProfile,
+    name: 'Profile',
+    component: () => import('../views/UserProfile.vue'),
     meta: { requiresAuth: true }
+  },
+  {
+    path: '/admin',
+    name: 'Admin',
+    component: () => import('../views/AdminDashboard.vue'),
+    meta: { requiresAuth: true, requiresAdmin: true }
+  },
+  // 404 route
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'NotFound',
+    component: {
+      template: '<div class="min-h-screen flex items-center justify-center"><div class="text-center"><h1 class="text-4xl font-bold text-gray-800">404</h1><p class="text-xl text-gray-600">Page not found</p><router-link to="/" class="mt-4 inline-block px-4 py-2 bg-shafali-purple text-white rounded-md">Go Home</router-link></div></div>'
+    }
   }
 ];
 
 const router = createRouter({
   history: createWebHistory(),
-  routes
+  routes,
+  scrollBehavior() {
+    // Always scroll to top when navigating
+    return { top: 0 };
+  }
 });
 
 // Create a promise to properly handle auth state initialization
@@ -83,40 +101,24 @@ const getCurrentUser = () => {
 };
 
 // Navigation guard for protected routes
-router.beforeEach(async (to, from, next) => {
+router.beforeEach((to, from, next) => {
   const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
   const requiresAdmin = to.matched.some(record => record.meta.requiresAdmin);
+  const currentUser = auth.currentUser;
 
-  if (requiresAuth) {
-    // Wait for auth state to initialize
-    const currentUser = await getCurrentUser();
+  const adminEmails = ['artisanbranding@gmail.com', 'ShafaliSpurlingJeste@gmail.com'];
 
-    if (!currentUser) {
-      // Save the intended destination to redirect after login
-      next({
-        path: '/login',
-        query: { redirect: to.fullPath }
-      });
-      return;
-    }
-
-    if (requiresAdmin) {
-      // Check if user has admin rights (for a real app, you'd fetch this from Firestore)
-      // For demonstration, we'll check if their email matches an admin email
-      const adminEmails = ['artisanb@me.com']; // Add your admin emails here
-
-      if (adminEmails.includes(currentUser.email)) {
-        next();
-      } else {
-        alert('You do not have permission to access the admin dashboard');
-        next('/');
-      }
-    } else {
-      next();
-    }
-  } else {
+  if (requiresAuth && !currentUser) {
+    next({
+      path: '/auth-choice',
+      query: { redirect: to.fullPath }
+    });
+  }
+  else if (requiresAdmin && (!currentUser || !adminEmails.includes(currentUser.email))) {
+    next({ path: '/' });
+  }
+  else {
     next();
   }
 });
-
 export default router;

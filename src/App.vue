@@ -38,7 +38,7 @@ html {
 }
 
 body {
-  font-family: "Inter", sans-serif;
+  font-family: "mr-eaves-xl-modern", sans-serif;
   overflow-x: hidden;
 }
 

@@ -67,7 +67,7 @@ export default {
       if (isLoggedIn.value) {
         router.push('/upload');
       } else {
-        router.push('/login?redirect=/upload');
+    router.push('/auth-choice?redirect=/upload');
       }
     };
     
@@ -109,6 +109,16 @@ export default {
   animation: pulse 2s infinite;
 }
 
+/* Ensure hover text is white */
+.floating-upload-button:hover {
+  color: white;
+}
+
+/* Ensure the SVG inherits the white color on hover */
+.floating-upload-button:hover svg {
+  fill: white;
+}
+
 @keyframes pulse {
   0% {
     box-shadow: 0 0 0 0 rgba(108, 44, 155, 0.7);
@@ -121,3 +131,4 @@ export default {
   }
 }
 </style>
+

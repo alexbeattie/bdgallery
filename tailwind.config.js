@@ -7,6 +7,13 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+          // 'shafali-purple': 'var(--shafali-purple)', // Use CSS variable
+          // 'shafali-light-purple': 'var(--shafali-light-purple)',
+          // 'shafali-very-light-purple': 'var(--shafali-very-light-purple)',
+          // 'shafali-dark-blue': 'var(--shafali-dark-blue)',
+          // 'shafali-blue': 'var(--shafali-blue)',
+          // 'shafali-white': 'var(--shafali-white)',
+          // 'shafali-off-white': 'var(--shafali-off-white)',
         // Mid-century color palette
         'mcm': {
           'amber': {

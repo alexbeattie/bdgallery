@@ -38,7 +38,8 @@ p {
 html {
   scroll-behavior: smooth;
 }
-html, body {
+html,
+body {
   overflow-x: hidden;
 }
 .background-pattern {

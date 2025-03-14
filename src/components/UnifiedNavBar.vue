@@ -87,12 +87,12 @@
 
             <!-- Authentication Links -->
             <template v-if="!user">
-              <!-- Bold login button with high visibility -->
+              <!-- Bold login button with high visibility - redirects to auth-choice -->
               <router-link
-                to="/login"
+                to="/auth-choice?redirect=/upload"
                 class="px-4 py-2 text-white font-bold uppercase tracking-wide bg-shafali-purple rounded-md shadow-md hover:bg-shafali-light-purple transition-all transform hover:scale-105 flex items-center"
               >
-                <span class="mr-1">🔒</span> Login To Upload Photos
+                <span class="mr-1">📷</span> Upload Photos
               </router-link>
               
               <router-link
@@ -298,12 +298,12 @@
           </button>
         </template>
         <template v-else>
-          <!-- Bold login button in mobile menu -->
+          <!-- Bold login button in mobile menu - redirects to auth-choice -->
           <router-link
-            to="/login"
+            to="/auth-choice?redirect=/upload"
             class="block px-4 py-3 text-white font-bold uppercase tracking-wide bg-shafali-purple rounded-md shadow-md mb-2 text-center"
           >
-            🔒 Login To Upload Photos
+            📷 Upload Photos
           </router-link>
           
           <router-link
@@ -362,7 +362,7 @@ export default {
         // Redirect from protected routes if not logged in
         const protectedRoutes = ['/gallery', '/upload', '/dashboard'];
         if (!currentUser && protectedRoutes.includes(route.path)) {
-          router.push('/login');
+          router.push('/auth-choice?redirect=' + route.path);
         }
       });
 

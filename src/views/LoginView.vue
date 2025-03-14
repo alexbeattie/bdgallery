@@ -29,10 +29,11 @@
               </svg>
             </div>
           </div>
-          <h2 class="text-3xl font-extrabold text-gray-900">Welcome Back</h2>
-          <p class="mt-2 text-gray-600">
-            Sign in to access Shafali's birthday celebration
-          </p>
+      <h2 class="text-3xl font-extrabold text-gray-900">Account Access</h2>
+<p class="mt-2 text-gray-600">
+  Sign in to upload photos and view the gallery
+</p>
+
           
           <!-- Display redirect message if coming from protected route -->
           <div v-if="redirectMessage" class="mt-4 p-2 bg-shafali-very-light-purple rounded text-shafali-dark-blue">
@@ -51,6 +52,7 @@
                 id="email"
                 v-model="email"
                 type="email"
+                autocomplete="email"
                 required
                 class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-shafali-purple focus:border-shafali-purple"
               />
@@ -67,6 +69,8 @@
                 id="password"
                 v-model="password"
                 type="password"
+                  autocomplete="current-password"
+
                 required
                 class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-shafali-purple focus:border-shafali-purple"
               />
@@ -101,14 +105,14 @@
 
           <!-- Submit button -->
           <div>
-            <button
-              type="submit"
-              class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-shafali-purple hover:bg-shafali-light-purple focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-shafali-purple"
-              :disabled="loading"
-            >
-              <span v-if="loading">Signing in...</span>
-              <span v-else>Sign in</span>
-            </button>
+          <button
+  type="submit"
+  class="w-full flex justify-center py-2 px-4 border-2 border-shafali-purple rounded-md shadow-sm text-sm font-medium text-black bg-shafali-purple hover:bg-white hover:text-shafali-purple focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-shafali-purple transition-colors duration-200"
+  :disabled="loading"
+>
+  <span v-if="loading">Signing in...</span>
+  <span v-else>Sign in</span>
+</button>
           </div>
         </form>
 
@@ -174,7 +178,9 @@
         <form @submit.prevent="handlePasswordReset">
           <input
             type="email"
+              autocomplete="email"
             v-model="resetEmail"
+            
             placeholder="Email address"
             class="w-full p-3 border rounded mb-4"
             required

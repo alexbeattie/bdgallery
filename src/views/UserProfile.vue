@@ -411,6 +411,8 @@
                 id="currentPassword"
                 v-model="passwordForm.currentPassword"
                 class="w-full p-2 border border-gray-300 rounded focus:ring-mcm-amber-500 focus:border-mcm-amber-500"
+                  autocomplete="current-password"
+
                 required
               />
             </div>

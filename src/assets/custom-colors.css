@@ -23,7 +23,7 @@ h2 {
 
 /* Base typography for body text */
 body {
-  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  font-family: "mr-eaves-xl-modern", system-ui, -apple-system, sans-serif;
   font-size: var(--font-size-base);
   line-height: var(--line-height-normal);
   color: var(--shafali-dark-blue);
@@ -250,4 +250,189 @@ p {
   line-height: var(--line-height-normal);
   color: var(--shafali-dark-blue);
   margin-bottom: 0.5rem;
+}
+
+/* src/assets/css/mapbox.css */
+/* src/assets/css/mapbox.css */
+
+/* src/assets/css/mapbox.css */
+
+:root {
+  --primary-color: #6c2c9b;
+  --primary-light: #9a55c8;
+  --accent-color: #171927;
+  --background-light: #f9f7fd;
+}
+
+.mapboxgl-popup {
+  max-width: 350px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  animation: popupFadeIn 0.3s ease-out forwards;
+  background: linear-gradient(135deg, #ffffff 0%, #f9f7fd 100%);
+  border: 2px solid transparent;
+  border-image: linear-gradient(to right, #6c2c9b, #f5a623) 1;
+}
+
+.mapboxgl-popup-content {
+  padding: 20px;
+  background: none;
+    position: relative;
+
+}
+.mapboxgl-popup-content::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle, #f5a623 0%, transparent 70%);
+  opacity: 0.2;
+  z-index: -1;
+}
+
+.mapboxgl-popup-content h3 {
+  margin: 0 0 12px;
+  color: var(--primary-color); /* #6c2c9b */
+  font-weight: 700;
+  font-size: 1.25rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+
+.mapboxgl-popup-content p {
+  margin: 0 0 16px;
+  color: #2d2d2d; /* Darker gray for better contrast */
+  font-size: 1rem; /* Slightly larger for readability */
+  font-weight: 500; /* Medium weight for emphasis */
+  line-height: 1.6;
+  text-align: center;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+}
+
+.mapboxgl-popup-content .external-map-link {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 10px 15px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  margin-bottom: 10px;
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  min-width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  gap: 8px;
+}
+
+.mapboxgl-popup-content .external-map-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.mapboxgl-popup-content .external-map-link svg,
+.mapboxgl-popup-content .external-map-link img {
+  margin-right: 0;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.mapboxgl-popup-content .google-maps-link {
+  background-color: #4285f4;
+}
+
+.mapboxgl-popup-content .google-maps-link:hover {
+  background-color: #3367d6;
+}
+
+.mapboxgl-popup-content .apple-maps-link {
+  background-color: #000000;
+}
+
+.mapboxgl-popup-content .apple-maps-link:hover {
+  background-color: #333333;
+}
+
+.mapboxgl-popup-content .waze-link {
+  background-color: #33ccff;
+}
+
+.mapboxgl-popup-content .waze-link:hover {
+  background-color: #1ab9eb;
+}
+
+.mapboxgl-popup-content .center-hotel-btn {
+  background: none;
+  border: none;
+  color: var(--primary-color);
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 6px 0;
+  font-size: 0.9rem;
+  margin-top: 8px;
+  width: 100%;
+  text-align: center;
+  transition: color 0.3s ease;
+}
+
+.mapboxgl-popup-content .center-hotel-btn:hover {
+  color: var(--primary-light);
+}
+
+.mapboxgl-popup-close-button {
+  /* Default close button (if used) - can be removed if using custom button */
+  display: none; /* Hide default button */
+}
+
+.custom-close-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  color: #6c2c9b;
+  border: none;
+  font-size: 18px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.custom-close-btn:hover {
+  transform: scale(1.1);
+}
+
+@keyframes popupFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 350px) {
+  .mapboxgl-popup {
+    max-width: 280px;
+  }
+  .mapboxgl-popup-content .external-map-link {
+    min-width: 200px;
+    font-size: 0.85rem;
+  }
 }
